@@ -1,0 +1,60 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Statistic/Statistic')}">课程统计</a></li>
+			<li><a href="{:U('Statistic/scoresta')}">评分统计</a></li>
+		</ul>
+		<form class="well form-search" method="post" action="{:U('statistic/statistic/scoresta')}">
+			{:L('POST_DATE')}
+			<input type="text" name="stime" class="js-datetime" value="{$formget.start_time|default=''}" style="width: 120px;" autocomplete="off">-
+			<input autocomplete="off" type="text" class="js-datetime" name="etime" value="{$formget.end_time|default=''}" style="width: 120px;"> {:L('KEYWORD')}
+			<input type="text" name="keyword" style="width: 200px;" value="{$formget.keyword|default=''}" placeholder="{:L('PLEASE_ENTER_KEYWORD')}">
+			<button class="btn btn-primary">搜索</button>
+			<a class="btn btn-danger" href="{:U('AdminPage/index')}">清空</a>
+		</form>
+		<form class="js-ajax-form" method="post">
+			
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="16"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th width="100">ID</th>
+						<th>讲师姓名</th>						
+						<th width="80">课程名称</th>
+						<th width="120"><span>课程得分</span></th>						
+					</tr>
+				</thead>
+                                
+				<foreach name="data"  item="vo" >
+				<tr>
+					<td>{$vo@key}</td>
+					<td>{$vo.user_login}</td>
+					<td><span>{$vo.cs_name}</span></td>					
+					<td>{$vo.score}</td>
+					
+					
+				</tr>
+				</foreach>
+				
+			</table>
+			
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		setCookie('refersh_time', 0);
+		function refersh_window() {
+			var refersh_time = getCookie('refersh_time');
+			if (refersh_time == 1) {
+				window.location.reload();
+			}
+		}
+		setInterval(function() {
+			refersh_window()
+		}, 2000);
+	</script>
+</body>
+</html>

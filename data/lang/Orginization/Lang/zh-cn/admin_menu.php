@@ -1,0 +1,6 @@
+<?php
+return array (
+  'ORGINIZATION_ORGINIZATION_AUTHORITY' => '权限管理',
+  'ORGINIZATION_ORGINIZATION_INDEX' => '人员管理',
+  'ORGINIZATION_ORGINIZATION_MAIN' => '组织管理',
+);

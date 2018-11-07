@@ -1,0 +1,1378 @@
+<admintpl file="header" />
+<style>
+    .wrap-zb{
+        overflow: hidden;
+    }
+    .treeDemo_zb_left{
+        width: 23%;
+        float: left;
+        border: 1px solid #dddddd;
+    }
+    .orginization_title{
+        height: 40px;
+        line-height: 40px;
+        background-color: #eeeeee;
+        border-bottom: 1px solid #dddddd;
+        text-align: center;
+        color: #4ea0ea;
+        font-size: 16px;
+    }
+    .ztree_zb li span.button.add {
+        margin-left:2px;
+        margin-right: -1px;
+        background-position:-144px 0;
+        vertical-align:top;
+        *vertical-align:middle
+    }
+    .zb_authority_ul li{
+        list-style: none;
+        float: left;
+        margin-right: 20px;
+    }
+    .authority_zb{
+        margin: 0 !important;
+    }
+    ul.ztree{
+        margin: 0 !important;
+        border: none !important;
+        background-color: #fff !important;
+        width: auto !important;
+        min-height: 200px;
+        max-height: 650px;
+    }
+    .treeDemo_zb_right{
+        width: 73%;
+        float: left;
+        border: 1px solid #dddddd;
+    }
+    .personnelList,.unorganizedUserList{
+        float: left;
+        width: 100%;
+    }
+    .unorganizedUserList{
+        margin-top: 20px;
+    }
+    .personnelList_con,.unorganizedUserList_con{
+        width: 100%;
+        min-width: 700px;
+        float: left;
+        position: relative;
+    }
+    .administrators,.personnel{
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #dddddd;
+    }
+    .administrators_key,.personnel_key{
+        float: left;
+        color: #464646;
+        font-size: 14px;
+        padding: 30px 0 30px 10px;
+        font-weight: bold;
+    }
+    .administrators_value{
+        padding: 30px 0 40px;
+        overflow: hidden;
+    }
+    .personnel_value,.unorganizedUserList_value{
+        padding: 30px 0 110px;
+        overflow: hidden;
+    }
+    .personnel{
+        min-width: 700px;
+        min-height: 161px;
+    }
+    .paginationUserList{
+        margin: 0 0 0 10px;
+        position: absolute;
+        bottom: 50px;
+    }
+    .pagination>a{
+        color: #4ea0ea !important;
+    }
+    .value_label{
+        margin-left: 30px;
+        float: left;
+    }
+    .value_label_span{
+        margin-left: 10px !important;
+        display: inline-block;
+    }
+   .vauel_label_input{
+        display: inline-block;
+        float: left;
+    }
+    .personnelList_operation,.unorganizedUserList_operation{
+        position: absolute;
+        bottom: 10px;
+    }
+    .personnelList_operation > div,.unorganizedUserList_operation > div {
+        float: left;
+    }
+    .personnelList_operation > div > a, .unorganizedUserList_operation > div > a{
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #3aa8e8;
+        padding: 0 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+
+    .searchPerson, .personnel_search{
+        height: 70px;
+        line-height: 70px;
+        margin: 10px;
+        margin-bottom: 0;
+        background-color: #f5f5f5;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+    }
+    .searchPerson p,.personnel_search p{
+        display: inline-block;
+        margin-left: 20px;
+        border: none !important;
+    }
+    .searchPerson input,.personnel_search input{
+        margin-bottom: 0 !important;
+    }
+    .searchPerson a,.personnel_search a{
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #000000;
+        margin-left: 5px;
+        padding: 0 10px;
+        text-decoration: none;
+    }
+    .searchPerson a:hover,.personnel_search a:hover{
+        background-color: #3aa8e8;
+    }
+
+
+
+    /*跳转 start*/
+
+    .paginationUserList a{
+        display: block;
+        line-height: 30px !important;
+        height: 30px !important;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: none !important;
+    }
+    .paginationUserList a:hover{
+        background-color: #3aa8e8 !important;
+    }
+    .tableButton_orginization{
+        width: 390px;
+        float: right;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+    .goFirst_orginization,.goLast_orginization,.prePage_orginization,.nextPage_orginization{
+        border: 1px solid #bbbbbb;
+        background-color: #fafafa;
+        color: #777777;
+        border-radius: 2px;
+        float: left;
+    }
+    .goFirst_orginization,.goLast_orginization{
+        width: 44px;
+    }
+    .prePage_orginization,.nextPage_orginization{
+        width: 56px;
+    }
+    .prePage_orginization{
+        margin-left: 5px;
+    }
+    .nextPage_orginization{
+        margin-right: 5px;
+    }
+    .currentPage_countPage_orginization{
+        width: 45px;
+        float: left;
+        color: #3aa8e8;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+    }
+    .pages_orginization{
+        display: block !important;
+        width: 44px;
+        height: 28px !important;
+        line-height: 30px !important;
+        text-align: center;
+        border: 1px solid #3aa8e8;
+        padding: 0 !important;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 0 !important;
+        border-radius: 2px;
+        float: left;
+        color: #3aa8e8;
+    }
+    .goPage_orginization{
+        width: 44px;
+        height: 30px;
+        line-height: 30px;
+        color: white;
+        border-radius: 2px;
+        font-size: 14px;
+        background-color: #3aa8e8;
+        float: left;
+    }
+    .goPage_orginization:hover{
+        background-color: #4986c6;
+    }
+    /*跳转 end*/
+
+    .displayBlock{
+        display: block !important;
+    }
+    .displayNone{
+        display: none !important;
+    }
+
+    .ztree li span.button.edit{
+        background-position: -107px -47px !important;
+    }
+
+    .domBtn_Disabled{
+        color: #4986c6;
+    }
+    .domBtn{
+        color: #4986c6;
+        position: absolute;
+        font-size: 14px;
+    }
+
+</style>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/ztree/demo.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/ztree/zTreeStyle.css">
+<script type="text/javascript" src="__PUBLIC__/js/ztree/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/ztree/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/ztree/jquery.ztree.all.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/ztree/jquery.ztree.exedit.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/ztree/jquery.ztree.exhide.js"></script>
+<div class="wrap wrap-zb">
+    <!--保存当前点击的节点的ID-->
+    <input type="hidden" class="clickNoneId" value="">
+    <!--保存组织树拖拽的节点的ID-->
+    <input type="hidden" class="moveChildId" value="">
+    <!--保存组织树拖拽后父节点的ID-->
+    <input type="hidden" class="moveParentId" value="">
+    <div class="treeDemo_zb_left span3">
+        <div class="ztree_zb_title orginization_title">组织树</div>
+        <div class="ztree_zb_ul">
+            <ul id="treeDemo" class="ztree ztree_zb"></ul>
+        </div>
+    </div>
+    <div class="treeDemo_zb_right span9">
+        <div class="personnelList">
+            <div class="personnelList_title orginization_title"><span class="nowNodeName"></span>--人员列表</div>
+            <div class="personnelList_con">
+                <div class="administrators">
+                    <div class="administrators_key">管理员</div>
+                    <div class="administrators_value">
+                        <label class="value_label">
+                            <input type="hidden" name="administrators_value_input" class="administrators_value vauel_label_input">
+                            <span class="administrators_value_span value_label_span"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="personnel">
+                    <div class="personnel_search">
+                        <p>人员名：</p>
+                        <input type="text" class="personnel_searchPerson_input">
+                        <a href="javascript:;" onclick="searchuser()">搜索</a>
+                    </div>
+                    <div class="personnel_key">人员列表</div>
+                    <div class="personnel_value domBtnDiv"></div>
+                    <div class="table_button_orginization_personnel1 paginationUserList displayNone">
+                        <div class="tableButton_orginization">
+                            <a class="goFirst_orginization personnel1_goFirst_orginization" onclick="searchuser('首页')">首页</a>
+                            <a class="prePage_orginization personnel1_prePage_orginization" onclick="searchuser('上一页')">上一页</a>
+                            <p class="personnel1_currentPage_countPage_orginization currentPage_countPage_orginization"></p>
+                            <input type="hidden" class="personnel1_currentPage_orginization" value="0">
+                            <input type="hidden" class="personnel1_totalpage_orginization" value="">
+                            <a class="nextPage_orginization personnel1_nextPage_orginization" onclick="searchuser('下一页')">下一页</a>
+                            <a class="goLast_orginization personnel1_goLast_orginization" onclick="searchuser('尾页')">尾页</a>
+                            <input type="text" value="" class="personnel1_pages_orginization pages_orginization">
+                            <a class="goPage_orginization personnel1_goPage_orginization" onclick="searchuser('跳转')">跳转</a>
+                        </div>
+                    </div>
+                    <div class="table_button_orginization_personnel paginationUserList displayNone">
+                        <div class="tableButton_orginization">
+                            <a class="goFirst_orginization personnel_goFirst_orginization" onclick="userlistByNode('首页')">首页</a>
+                            <a class="prePage_orginization personnel_prePage_orginization" onclick="userlistByNode('上一页')">上一页</a>
+                            <p class="personnel_currentPage_countPage_orginization currentPage_countPage_orginization"></p>
+                            <input type="hidden" class="personnel_currentPage_orginization" value="0">
+                            <input type="hidden" class="personnel_totalpage_orginization" value="">
+                            <a class="nextPage_orginization personnel_nextPage_orginization" onclick="userlistByNode('下一页')">下一页</a>
+                            <a class="goLast_orginization personnel_goLast_orginization" onclick="userlistByNode('尾页')">尾页</a>
+                            <input type="text" value="" class="personnel_pages_orginization pages_orginization">
+                            <a class="goPage_orginization personnel_goPage_orginization" onclick="userlistByNode('跳转')">跳转</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="personnelList_operation">
+                    <div><a href="#"  onclick="delfromorg()">移除</a></div>
+                    <div><a href="#" onclick="updateAdministrator()">修改管理员身份</a></div>
+                    <!--<div><a href="#" onclick="allocationPermissions()">分配权限</a></div>-->
+                </div>
+            </div>
+        </div>
+        <div class="unorganizedUserList">
+            <div class="unorganizedUserList_title orginization_title">无组织用户列表</div>
+            <div class="searchPerson">
+                <p>用户名：</p>
+                <input type="text" class="searchPerson_input">
+                <a href="javascript:;" onclick="noorgsearch()">搜索</a>
+            </div>
+            <div class="unorganizedUserList_con">
+                <div class="unorganizedUserList_value"></div>
+                <div class="table_button_orginization_unorganized1 paginationUserList displayNone">
+                    <div class="tableButton_orginization">
+                        <a class="goFirst_orginization" onclick="noorgsearch('首页')">首页</a>
+                        <a class="prePage_orginization" onclick="noorgsearch('上一页')">上一页</a>
+                        <p class="unorganized1_currentPage_countPage_orginization currentPage_countPage_orginization"></p>
+                        <input type="hidden" class="unorganized1_currentPage_orginization" value="0">
+                        <input type="hidden" class="unorganized1_totalpage_orginization" value="">
+                        <a class="nextPage_orginization" onclick="noorgsearch('下一页')">下一页</a>
+                        <a class="goLast_orginization" onclick="noorgsearch('尾页')">尾页</a>
+                        <input type="text" value="" class="unorganized1_pages_orginization pages_orginization">
+                        <a class="goPage_orginization" onclick="noorgsearch('跳转')">跳转</a>
+                    </div>
+                </div>
+                <div class="table_button_orginization_unorganized paginationUserList displayNone">
+                    <div class="tableButton_orginization">
+                        <a class="goFirst_orginization" onclick="noorguser('首页')">首页</a>
+                        <a class="prePage_orginization" onclick="noorguser('上一页')">上一页</a>
+                        <p class="unorganized_currentPage_countPage_orginization currentPage_countPage_orginization"></p>
+                        <input type="hidden" class="unorganized_currentPage_orginization" value="0">
+                        <input type="hidden" class="unorganized_totalpage_orginization" value="">
+                        <a class="nextPage_orginization" onclick="noorguser('下一页')">下一页</a>
+                        <a class="goLast_orginization" onclick="noorguser('尾页')">尾页</a>
+                        <input type="text" value="" class="unorganized_pages_orginization pages_orginization">
+                        <a class="goPage_orginization" onclick="noorguser('跳转')">跳转</a>
+                    </div>
+                </div>
+                <div class="unorganizedUserList_operation">
+                    <div>
+                        <a href="javascript:;" onclick="addUserList()">添加</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+<script>
+    // 全局配置，每次查询的数据条数
+    var PSIZE = 20
+
+    var $return = '{$return}' // 后台返回的所有数据
+    var $returnJson = $return ? JSON.parse($return) : {}
+
+    // 组织结构
+    var orglist = $returnJson.orglist
+    var orglistNew = []
+    Object.keys(orglist).forEach(function (k) {
+        orglistNew.push(JSON.parse(JSON.stringify(orglist[k]).replace(/org_name/g,'name').replace(/parentid/g,'pId')))
+    })
+
+    var MoveTest = {
+        errorMsg: "放错了...请选择正确的类别！",
+        curTarget: null,
+        curTmpTarget: null,
+        noSel: function() {
+            try {
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            } catch(e){}
+        },
+        dragTree2Dom: function(treeId, treeNodes) {
+            return !treeNodes[0].isParent;
+        },
+        prevTree: function(treeId, treeNodes, targetNode) {
+            return !targetNode.isParent && targetNode.parentTId == treeNodes[0].parentTId;
+        },
+        nextTree: function(treeId, treeNodes, targetNode) {
+            return !targetNode.isParent && targetNode.parentTId == treeNodes[0].parentTId;
+        },
+        innerTree: function(treeId, treeNodes, targetNode) {
+            return targetNode!=null && targetNode.isParent && targetNode.tId == treeNodes[0].parentTId;
+        },
+        dragMove: function(e, treeId, treeNodes) {
+            var p = null, pId = 'dom_' + treeNodes[0].pId;
+            if (e.target.id == pId) {
+                p = $(e.target);
+            } else {
+                p = $(e.target).parent('#' + pId);
+                if (!p.get(0)) {
+                    p = null;
+                }
+            }
+
+        //    $('.domBtnDiv .active').removeClass('active');
+            if (p) {
+                p.addClass('active');
+            }
+        },
+        dropTree2Dom: function(e, treeId, treeNodes, targetNode, moveType) {
+            var domId = "dom_" + treeNodes[0].getParentNode().id;
+            if (moveType == null && (domId == e.target.id || $(e.target).parents("#" + domId).length > 0)) {
+                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                zTree.removeNode(treeNodes[0]);
+
+                var newDom = $("span[domId=" + treeNodes[0].id + "]");
+                if (newDom.length > 0) {
+                    newDom.removeClass("domBtn");
+                } else {
+                    $("#" + domId).append("<span class='domBtn' domId='" + treeNodes[0].id + "'>" + treeNodes[0].name + "</span>");
+                }
+                MoveTest.updateType();
+            } else if ( $(e.target).parents(".domBtnDiv").length > 0) {
+                alert(MoveTest.errorMsg);
+            }
+        },
+        dom2Tree: function(e, treeId, treeNode) {
+            var target = MoveTest.curTarget
+            var oid = ''
+            if (treeNode) {
+                oid = treeNode.id // 修改的节点ID（目标节点ID)
+            } else {
+                $(target).removeClass("domBtn_Disabled");
+            }
+            var uid = '' // 拖拽的ID
+            if ($("input[name=personnel_value_input]:checked").length < 1) {
+                uid = $(".domBtn_Disabled").parent().find('input').val()
+            }
+            if (oid && uid) {
+                edituseroid(oid,uid)
+            }
+        },
+        updateType: function() {
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nodes = zTree.getNodes();
+            for (var i=0, l=nodes.length; i<l; i++) {
+                var num = nodes[i].children ? nodes[i].children.length : 0;
+                nodes[i].name = nodes[i].name.replace(/ \(.*\)/gi, "") + " (" + num + ")";
+                zTree.updateNode(nodes[i]);
+            }
+        },
+        bindDom: function() {
+            $(".domBtnDiv").bind("mousedown", MoveTest.bindMouseDown);
+        },
+        bindMouseDown: function(e) {
+            var target = e.target,doc = $(document);
+            if (target!=null && $(target).hasClass('personnel_value_span')) {
+                if (e.button === 2) {
+                    return
+                } else {
+                    $(target).addClass("domBtn_Disabled");
+                    doc.bind("mousemove", MoveTest.bindMouseMove);
+                    doc.bind("mouseup", MoveTest.bindMouseUp);
+                    MoveTest.curTarget = target
+                    if(e.preventDefault) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        },
+        bindMouseMove: function(e) {
+            var target = MoveTest.curTarget
+            MoveTest.noSel();
+            var doc = $(document),
+                docScrollTop = doc.scrollTop(),
+                docScrollLeft = doc.scrollLeft(),
+                tmpTarget;
+
+            if(!MoveTest.curTmpTarget){
+                curDom = $("<span class='personnel_value_span value_label_span domBtn'>" + $(e.target).html() + "</span>");
+                curDom.appendTo("body");
+                MoveTest.curTmpTarget = curDom
+            }
+            tmpTarget = MoveTest.curTmpTarget
+
+            if (tmpTarget) {
+                tmpTarget.css({
+                    "top": (e.clientY + docScrollTop + 3) + "px",
+                    "left": (e.clientX + docScrollLeft + 3) + "px"
+                });
+            }
+            return false;
+        },
+        bindMouseUp: function(e) {
+            var doc = $(document);
+            doc.unbind("mousemove", MoveTest.bindMouseMove);
+            doc.unbind("mouseup", MoveTest.bindMouseUp);
+            var target = MoveTest.curTarget, tmpTarget = MoveTest.curTmpTarget;
+            var targetInputIsChecked = $(target).parent().find('input').prop('checked')
+            if (targetInputIsChecked) {
+                $(target).removeClass("domBtn_Disabled");
+            }
+
+            if (tmpTarget) tmpTarget.remove();
+            if ($(e.target).parents("#treeDemo").length == 0) {
+                MoveTest.curTarget = null;
+                MoveTest.curTmpTarget = null;
+            }
+        },
+        bindSelect: function() {
+            return false;
+        }
+    };
+
+//    ztree 操作 start
+    var setting = {
+        view: {
+            fontCss: getFont,
+            selectedMulti: false, // 是否允许同时选中多个节点
+            addHoverDom:addHoverDom, // 鼠标移动到节点触发的事件
+            removeHoverDom:removeHoverDom // 鼠标移开节点触发的事件
+        },
+        edit: {  // 修改节点名称需要设置这个
+            enable: true,
+            editNameSelectAll:true,
+            removeTitle:'删除',
+            renameTitle:'重命名',
+            showRemoveBtn: false,
+            showRenameBtn: false,
+            drag: {
+                prev: MoveTest.prevTree,
+                next: MoveTest.nextTree,
+                inner: MoveTest.innerTree
+            }
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback:{
+            beforeCheck:true,
+            onCheck:onCheck,
+            beforeRemove:beforeRemove,//点击删除时触发，用来提示用户是否确定删除（可以根据返回值 true|false 确定是否可以删除）
+            beforeEditName: beforeEditName,//点击编辑时触发，用来判断该节点是否能编辑
+            beforeRename:beforeRename,//编辑结束时触发，用来验证输入的数据是否符合要求(也是根据返回值 true|false 确定是否可以编辑完成)
+            onRemove:onRemove,//(beforeRemove返回true之后可以进行onRemove)删除节点后触发，用户后台操作
+            onRename:onRename,//编辑后触发，用于操作后台
+            onClick:clickNode,//点击节点触发的事件
+//            beforeDrag: MoveTest.dragTree2Dom,
+            onDrop: MoveTest.dropTree2Dom,
+            onDragMove: MoveTest.dragMove,
+            onDragMove:onDragMove,
+            onMouseUp: MoveTest.dom2Tree,
+            beforeDrag: beforeDrag,
+            beforeDrop: beforeDrop
+        }
+    };
+    // 获取选中的节点id
+    function onCheck(e,treeId,treeNode) {
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo"),
+            nodes = treeObj.getCheckedNodes(true),
+            v = "",
+            oidsVal = '';
+        for (var i = 0; i < nodes.length; i++) {
+            v += nodes[i].name + ",";
+            oidsVal += oidsVal ? ','+nodes[i].id : nodes[i].id
+        }
+        $(".oids").val(oidsVal)
+    }
+    $(function(){
+        jQuery.fn.zTree.init($("#treeDemo"), setting, orglistNew);
+        setCheck();
+        MoveTest.bindDom();
+        if($returnJson.oid){
+            isHaveId($returnJson.oid)
+        } else {
+            isHaveId()
+        }
+
+
+        // 获取根节点的人员列表
+        userlistByNode()
+
+        // 获取无组织用户列表
+        noorguser()
+    });
+    // 判断Id是否传入，如果有就显示对应的节点，如果没有，就显示根节点
+    function isHaveId(id) {
+        //获得树形图对象
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        var showNode = ''
+        if (id) {
+            showNode = zTree.getNodeByParam("id", id, null);
+        } else {
+            //获取根节点个数,getNodes获取的是根节点的集合
+            var nodeList = zTree.getNodes();
+            showNode = nodeList[0]
+        }
+        modifyNode(showNode, true)
+
+    }
+    function setCheck() {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo")
+        zTree.setting.check.chkboxType = { "Y":'', "N":''}
+        zTree.setting.edit.drag.isCopy = true;
+        zTree.setting.edit.drag.isMove = true;
+        zTree.setting.edit.drag.prev = true;
+        zTree.setting.edit.drag.inner = true;
+        zTree.setting.edit.drag.next = true;
+        zTree.setting.edit.showRemoveBtn = true;
+        zTree.setting.edit.showRenameBtn = true;
+    }
+    function beforeRemove(e,treeId,treeNode){
+        if (confirm("您确定要删除吗？")){
+            var oid = treeId ? treeId.id : ''
+            var dataJson = {}
+            var flag = false
+            var clickNoneId = $(".clickNoneId").val()
+            //获得树形图对象
+            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+            //获取根节点个数,getNodes获取的是根节点的集合
+            var nodeList = zTree.getNodes();
+            // 根节点id
+            var nodeList_0_id = nodeList[0].id
+
+
+            $.ajax({
+                url: './index.php?g=Orginization&m=Orginization&a=delorginization',
+                type: 'post',
+                async: false,
+                data: {oid: oid},
+                success: function (data) {
+                    dataJson = JSON.parse(data)
+
+                    // 删除后进行判断，如果删除的id和当前点击的id一致，那就获取根节点的信息
+                    if (oid === clickNoneId && dataJson.state === true) {
+                        $(".clickNoneId").val(nodeList_0_id)
+
+                        // 通过ID获取节点
+                        var nodeList_0 = zTree.getNodeByParam("id", nodeList_0_id, null)
+
+                        // 这种指定节点的样式，要用到updateNode
+                        nodeList_0.font = {'color': '#3aa8e8'}
+                        zTree.updateNode(nodeList_0);
+
+                        // 给nowNodeName设置值
+                        $('.nowNodeName').html('').html(nodeList_0.name)
+
+                        // 获取根节点的人员列表
+                        userlistByNode()
+
+                        // 获取无组织用户列表
+                        noorguser()
+                    }
+
+                    alert(dataJson.msg)
+                    flag = true
+
+                },
+                error: function (error) {
+                    console.log(error)
+                    flag =  false
+                }
+            })
+            return flag
+        } else {
+            return false
+        }
+    }
+    function onRemove(e,treeId,treeNode){
+//      移除节点后触发的事件
+    }
+    function beforeRename(treeId,treeNode,newName,isCancel){
+        if(newName.length < 3){
+            alert("名称不能少于3个字符！");
+            return false;
+        }
+        return true;
+    }
+    function onRename(e,treeId,treeNode,isCancel){
+
+    }
+    function beforeEditName(treeId,treeNode){
+        var oid = treeNode.id
+        window.location.href = './index.php?g=Orginization&m=Orginization&a=editorg&oid='+oid
+        return false;
+    }
+    function beforeDrag(treeId,treeNodes){
+        if (treeNodes) {
+            $(".moveChildId").val(treeNodes[0].id)
+        }
+        for (var i=0,l=treeNodes.length; i<l; i++) {
+            if (treeNodes[i].drag === false) {
+                return false;
+            }
+        }
+        return true;
+    }
+    function beforeDrop(treeId, treeNodes, targetNode, moveType) {
+        var oid = '',parentid = '';
+        if (targetNode) {
+            oid = $(".moveChildId").val()
+            parentid = targetNode.id
+            $.ajax({
+                url: './index.php?g=Orginization&m=Orginization&a=editorgpid',
+                type: 'post',
+                data: {oid: oid,parentid :parentid},
+                success: function (data) {
+                  alert(JSON.parse(data).msg)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+        return targetNode ? targetNode.drop !== false : true;
+    }
+    function onDragMove() {
+    }
+//    @method 点击节点，获取节点的人员信息
+//    @params {String} id 点击节点的ID
+//    @return
+    function clickNode(e,treeId,treeNode){
+        $(".personnel_searchPerson_input").val('')
+        $(".searchPerson_input").val('')
+        // 修改节点样式以及给clickNoneId赋值
+        modifyNode(treeNode)
+
+        userlistByNode()
+
+        noorguser()
+    }
+    var newCount = 1;
+    function addHoverDom(treeId,treeNode){
+//        treeNode.level 为节点层级 0开始 从第三层开始  不准出现添加按钮
+        if (treeNode.level < 2) {
+            var sObj = $("#" + treeNode.tId + "_span");
+            if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+            var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+                + "' title='添加子节点' onfocus='this.blur();'></span>";
+            sObj.after(addStr);
+            var btn = $("#addBtn_"+treeNode.tId);
+            if (btn) btn.bind("click", function(e){
+                // 提交的时候把   http://localhost:8081  更改成   http://lbpx.crecgec.cn
+                 window.location.href = './index.php?g=Orginization&m=Orginization&a=addorg&pId='+treeNode.id+'&id='+treeNode.id
+                //在这里向后台发送请求保存一个新建的叶子节点，父id为treeNode.id,让后将下面的100+newCount换成返回的id
+                return false;
+            });
+        }
+    }
+    function removeHoverDom(treeId,treeNode){
+        $("#addBtn_"+treeNode.tId).unbind().remove();
+    }
+
+    //    ztree 操作 end
+
+    // 搜索用户
+//    @params {String} username
+//    @return {数组型字符串} data
+    function noorgsearch(operation) {
+        var username = $('.searchPerson_input').val().trim()
+        var unorganizedUserList_value = ''
+        var dataJson = {}
+        var curpage = 1// 第几页
+        var psize = PSIZE // 每页多少条数据
+        var totalpage = 0
+        if (operation === '首页') {
+            if (Number($(".unorganized1_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = 1
+            }
+        } else if (operation === '上一页') {
+            if (Number($(".unorganized1_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = Number($(".unorganized1_currentPage_orginization").val()) - 1
+            }
+        } else if (operation === '下一页') {
+            if (Number($(".unorganized1_currentPage_orginization").val()) < Number($(".unorganized1_totalpage_orginization").val())) {
+                curpage = Number($(".unorganized1_currentPage_orginization").val()) + 1
+            } else {
+                return
+            }
+        } else if(operation ==='尾页'){
+            if (Number($(".unorganized1_currentPage_orginization").val()) === Number($(".unorganized1_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".unorganized1_totalpage_orginization").val())
+            }
+        } else if (operation ==='跳转') {
+            if (Number($(".unorganized1_pages_orginization").val()) === Number($(".unorganized1_currentPage_orginization").val()) || Number($(".unorganized1_pages_orginization").val()) < 1 || Number($(".unorganized1_pages_orginization").val()) > Number($(".unorganized1_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".unorganized1_pages_orginization").val())
+            }
+        } else if (operation ==='当前') {
+            curpage = Number($(".unorganized1_currentPage_orginization").val())
+        } else {
+            curpage = 1
+        }
+        $.ajax({
+                url: './index.php?g=Orginization&m=Orginization&a=noorgsearch',
+                type: 'post',
+                data: {username: username,curpage: curpage,psize: psize},
+                success: function (data) {
+                    $(".table_button_orginization_unorganized").removeClass('displayBlock').addClass('displayNone')
+                    if (data) {
+                        dataJson = JSON.parse(data)
+                        dataJson.userlist.forEach(function (k) {
+                            unorganizedUserList_value += '<label class="value_label">' +
+                                '<input type="checkbox" name="unorganizedUserList_value_input" class="unorganizedUserList_value_input vauel_label_input" value="'+k.id+'">' +
+                                '<span class="unorganizedUserList_value_span value_label_span">'+k.user_login+'</span>'+
+                                '</label>'
+                        })
+                        $('.unorganizedUserList_value').html('')
+                        $('.unorganizedUserList_value').html(unorganizedUserList_value)
+
+                        // 总页数
+                        totalpage = dataJson.totalpage
+
+                        $(".unorganized1_currentPage_orginization").val(curpage)
+                        $(".unorganized1_totalpage_orginization").val(totalpage)
+                        $(".unorganized1_currentPage_countPage_orginization").html('').html(curpage+"/"+totalpage)
+                        // 总页数
+                        if (totalpage > 1) {
+                            $(".table_button_orginization_unorganized1").removeClass('displayNone').addClass('displayBlock')
+                        } else {
+                            $(".table_button_orginization_unorganized1").removeClass('displayBlock').addClass('displayNone')
+                        }
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+    }
+
+    // @methods 人员搜索
+    // @params {String} username
+    function searchuser(operation) {
+        var username = $('.personnel_searchPerson_input').val().trim()
+        var oid = $(".clickNoneId").val()
+        var personnel_value = ''
+        var dataJson = {}
+        var curpage = 1// 第几页
+        var psize = PSIZE // 每页多少条数据
+        var totalpage = 0
+        if (operation === '首页') {
+            if (Number($(".personnel1_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = 1
+            }
+        } else if (operation === '上一页') {
+            if (Number($(".personnel1_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = Number($(".personnel1_currentPage_orginization").val()) - 1
+            }
+        } else if (operation === '下一页') {
+            if (Number($(".personnel1_currentPage_orginization").val()) < Number($(".personnel1_totalpage_orginization").val())) {
+                curpage = Number($(".personnel1_currentPage_orginization").val()) + 1
+            } else {
+                return
+            }
+        } else if(operation ==='尾页'){
+            if (Number($(".personnel1_currentPage_orginization").val()) === Number($(".personnel1_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".personnel1_totalpage_orginization").val())
+            }
+        } else if (operation ==='跳转') {
+            if (Number($(".personnel1_pages_orginization").val()) === Number($(".personnel1_currentPage_orginization").val()) || Number($(".personnel1_pages_orginization").val()) < 1 || Number($(".personnel1_pages_orginization").val()) > Number($(".personnel1_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".personnel1_pages_orginization").val())
+            }
+        }else if (operation ==='当前') {
+            curpage = Number($(".personnel1_currentPage_orginization").val())
+        } else {
+            curpage = 1
+        }
+
+         $.ajax({
+                url: './index.php?g=Orginization&m=Orginization&a=searchuser',
+                type: 'post',
+                data: {username: username,oid : oid,curpage: curpage, psize: psize},
+                success: function (data) {
+                    $(".table_button_orginization_personnel").removeClass('displayBlock').addClass('displayNone')
+                    if (data) {
+                        dataJson = JSON.parse(data)
+                        dataJson.userlist.forEach(function (k) {
+                            personnel_value += '<label class="value_label">' +
+                                '<input type="checkbox" name="personnel_value_input" class="personnel_value vauel_label_input" value="'+k.id+'">' +
+                                '<span class="personnel_value_span value_label_span">'+k.user_login+'</span>'+
+                                '</label>'
+                        })
+
+                        $('.personnel_value').html('')
+                        $('.personnel_value').html(personnel_value)
+
+                        // 总页数
+                        totalpage = dataJson.totalpage
+
+                        $(".personnel1_currentPage_orginization").val(curpage)
+                        $(".personnel1_totalpage_orginization").val(totalpage)
+                        $(".personnel1_currentPage_countPage_orginization").html('').html(curpage+"/"+totalpage)
+
+                        // 总页数
+                        if (totalpage > 1) {
+                            $(".table_button_orginization_personnel1").removeClass('displayNone').addClass('displayBlock')
+                        } else {
+                            $(".table_button_orginization_personnel1").removeClass('displayBlock').addClass('displayNone')
+                        }
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+    }
+
+//    @method 无组织用户列表添加到用户列表
+//    @params {Stirng} oid 节点ID
+//    @params {String} uid 选中的用户ID 可以有多个
+    function addUserList() {
+        var oid = $(".clickNoneId").val()
+        var uClickArr = $("input[name='unorganizedUserList_value_input']:checked")
+        var checkBoxNum = Number(uClickArr.length)  // 选择的多选框个数
+        var nowCheckBoxNum = Number($(".unorganizedUserList_value > .value_label").length) // 当前页数的多选框个数
+        var unorganized_currentPage_orginization = Number($(".unorganized_currentPage_orginization").val()) // 当前页数
+        var unorganized_totalpage_orginization = Number($(".unorganized_totalpage_orginization").val()) // 总页数
+        var uid = ''
+        var dataJSON = ''
+        if (checkBoxNum === nowCheckBoxNum && unorganized_currentPage_orginization !== 1 && unorganized_currentPage_orginization === unorganized_totalpage_orginization) {
+            noorguser('上一页')
+        } else {
+            noorguser('当前')
+        }
+
+        if (uClickArr.length > 0) {
+            for(var i = 0;i < uClickArr.length; i++) {
+                if (uid) {
+                    uid += ',' + $(uClickArr[i]).val()
+                } else {
+                    uid += $(uClickArr[i]).val()
+                }
+            }
+            $.ajax({
+                url: './index.php?g=Orginization&m=Orginization&a=allotorg',
+                type: 'post',
+                data: {oid:oid, uid: uid},
+                success: function (data) {
+                    dataJSON = JSON.parse(data)
+                    if (dataJSON.state === false) {
+                        alert(dataJSON.msg)
+                        return
+                    }
+                    if (dataJSON.state === true) {
+                        alert(dataJSON.msg)
+
+                        userlistByNode()
+
+                        if (checkBoxNum === nowCheckBoxNum && unorganized_currentPage_orginization !== 1 && unorganized_currentPage_orginization === unorganized_totalpage_orginization) {
+                            noorguser('上一页')
+                        } else {
+                            noorguser('当前')
+                        }
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        } else {
+            alert('请至少选择一个用户')
+        }
+    }
+
+    // @method 修改当前点击节点的管理员
+    // @params {String} oid 组织节点对应的ID
+    // @params {String} adminid 选中的管理员ID
+    function updateAdministrator() {
+        var oid = $(".clickNoneId").val()
+        var userClick = $("input[name='personnel_value_input']:checked")
+        var adminid = $("input[name=administrators_value_input]").val() // 管理员Id
+        var uid = ''
+        var data = {}
+        var dataJSON = ''
+        var orgadmin = []
+        var orgadmin_user_nicename = ''
+        var userlist = [] // 用户列表
+        var personnel_value = ''
+        if (userClick.length > 0) {
+            if (userClick.length > 1) {
+                alert('只能选择一个用户！')
+            } else {
+                uid = userClick.val()
+                data = {
+                    oid: oid,
+                    uid: uid,
+                    adminid: adminid
+                }
+                $.ajax({
+                    url: './index.php?g=Orginization&m=Orginization&a=resetadmin',
+                    type: 'post',
+                    data: data,
+                    success: function (data) {
+                        dataJSON = JSON.parse(data)
+                        if (dataJSON.state === false) {
+                            alert(dataJSON.msg)
+                            return
+                        }
+                        if (dataJSON.state === true) {
+                            alert(dataJSON.msg)
+                            orgadmin_user_nicename = dataJSON.useradmin[0].user_login
+                            $(".administrators_value_span").html(orgadmin_user_nicename)
+                            $("input[name=administrators_value_input]").val(uid)
+                            userlist = dataJSON.userlist
+                            if (userlist.length > 0) {
+                                userlist.forEach(function (k) {
+                                    personnel_value += '<label class="value_label">' +
+                                        '<input type="checkbox" name="personnel_value_input" class="personnel_value vauel_label_input" value="'+k.id+'">' +
+                                        '<span class="personnel_value_span value_label_span">'+k.user_login+'</span>'+
+                                        '</label>'
+                                })
+                                $(".personnel_value").html(personnel_value)
+                            } else {
+                                $(".personnel_value").html('')
+                            }
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            }
+        } else {
+            alert('请选择用户！')
+        }
+    }
+
+    // @method  将人员从组织节点移除,只有自己的管理员可以删除本节点下的成员
+    // @params {String} oid 组织节点对应的ID
+    // @params {String} userid 选中的人员ID
+    function delfromorg() {
+        var oid = $(".clickNoneId").val()
+        var uClickArr = $("input[name='personnel_value_input']:checked")
+        var checkBoxNum = Number(uClickArr.length)  // 选择的多选框个数
+        var nowCheckBoxNum = Number($(".personnel_value > .value_label").length) // 当前页数的多选框个数
+        var personnel_currentPage_orginization = Number($(".personnel_currentPage_orginization").val()) // 当前页数
+        var personnel_totalpage_orginization = Number($(".personnel_totalpage_orginization").val()) // 总页数
+        var uid = ''
+        var dataJSON = ''
+        if (uClickArr.length > 0) {
+            for(var i = 0;i < uClickArr.length; i++) {
+                if (uid) {
+                    uid += ',' + $(uClickArr[i]).val()
+                } else {
+                    uid += $(uClickArr[i]).val()
+                }
+            }
+            $.ajax({
+                url: './index.php?g=Orginization&m=Orginization&a=delfromorg',
+                type: 'post',
+                data: {oid:oid, uid: uid},
+                success: function (data) {
+                    dataJSON = JSON.parse(data)
+                    if (dataJSON.state === false) {
+                        alert(dataJSON.msg)
+                        return
+                    }
+                    if (dataJSON.state === true) {
+                        alert(dataJSON.msg)
+
+                        userlistByNode()
+
+                        if (checkBoxNum === nowCheckBoxNum && personnel_currentPage_orginization !== 1 && personnel_currentPage_orginization === personnel_totalpage_orginization) {
+                            userlistByNode('上一页')
+                        } else {
+                            userlistByNode('当前')
+                        }
+
+                        noorguser()
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        } else {
+            alert('请至少选择一个用户')
+        }
+    }
+
+//    @method 设置节点样式，必须用这个方法（这是zTree插件必须的）
+//    @ params node 当前节点
+    function getFont(treeId, node) {
+        return node.font ? node.font : {};
+    }
+
+//    @method 修改node节点的样式以及给clickNoneId赋值
+//    @treeNode 节点
+    function modifyNode(treeNode, isflag) {
+        //获得树形图对象
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+
+        if (isflag) {
+
+        } else {
+            // 通过ID获取点击之前选择的节点
+            var node_old_click_id = $(".clickNoneId").val()
+            var node1_old_click = zTree.getNodeByParam("id", node_old_click_id, null);
+
+            // 这种指定节点的样式，要用到updateNode
+            node1_old_click.font = {'color': '#333'}
+            zTree.updateNode(node1_old_click);
+        }
+        // 设置当前被点击节点的ID
+        $(".clickNoneId").val(treeNode.id)
+
+        // 给nowNodeName设置值
+        $('.nowNodeName').html('').html(treeNode.name)
+
+        // 这种指定节点的样式，要用到updateNode
+        treeNode.font = {'color': '#3aa8e8'}
+        zTree.updateNode(treeNode)
+        zTree.expandNode(treeNode, true,false,false)
+    }
+
+    // @methods 用户列表
+    // @params (String) oid 组织节点id
+    function userlistByNode(operation) {
+        var oid = $(".clickNoneId").val()
+        var curpage = 1// 第几页
+        var psize = PSIZE // 每页多少条数据
+
+        if (operation === '首页') {
+            if (Number($(".personnel_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = 1
+            }
+        } else if (operation === '上一页') {
+            if (Number($(".personnel_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = Number($(".personnel_currentPage_orginization").val()) - 1
+            }
+        } else if (operation === '下一页') {
+            if (Number($(".personnel_currentPage_orginization").val()) < Number($(".personnel_totalpage_orginization").val())) {
+                curpage = Number($(".personnel_currentPage_orginization").val()) + 1
+            } else {
+                return
+            }
+        } else if(operation ==='尾页'){
+            if (Number($(".personnel_currentPage_orginization").val()) === Number($(".personnel_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".personnel_totalpage_orginization").val())
+            }
+        } else if (operation ==='跳转') {
+            if (Number($(".personnel_pages_orginization").val()) === Number($(".personnel_currentPage_orginization").val()) || Number($(".personnel_pages_orginization").val()) < 1 || Number($(".personnel_pages_orginization").val()) > Number($(".personnel_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".personnel_pages_orginization").val())
+            }
+        }else if (operation ==='当前') {
+            curpage = Number($(".personnel_currentPage_orginization").val())
+        } else {
+            curpage = 1
+        }
+        var dataJson = {},orgadmin='',orgadmin_user_nicename='',orgadmin_id='',userlist='',personnel_value='';
+        $.ajax({
+            url: './index.php?g=Orginization&m=Orginization&a=userlist',
+            type: 'post',
+            data: {oid: oid, curpage: curpage, psize: psize},
+            success: function (data) {
+                dataJson = JSON.parse(data)
+
+                // 管理员
+                orgadmin = dataJson.orgadmin
+                if (orgadmin) {
+                    orgadmin_user_nicename = orgadmin.user_login
+                    $("input[name=administrators_value_input]").val(orgadmin.id)
+                    $(".administrators_value_span").html(orgadmin_user_nicename)
+                    orgadmin_id = orgadmin.id
+                    $(".administrators_value").val(orgadmin_id)
+                } else {
+                    $("input[name=administrators_value_input]").val('')
+                    $(".administrators_value_span").html('')
+                    $(".administrators_value").val('')
+                }
+
+
+                // 人员列表
+                userlist = dataJson.userlist
+                if (userlist.length > 0) {
+                    userlist.forEach(function (k) {
+                        personnel_value += '<label class="value_label">' +
+                            '<input type="checkbox" name="personnel_value_input" class="personnel_value vauel_label_input" value="'+k.id+'">' +
+                            '<span class="personnel_value_span value_label_span">'+k.user_login+'</span>'+
+                            '</label>'
+                    })
+                    $(".personnel_value").html('')
+                    $(".personnel_value").html(personnel_value)
+                } else {
+                    $(".personnel_value").html('')
+                }
+                inputClickSpan()
+                // 人员列表分页
+
+                // 总页数
+                var totalpage = dataJson.totalpage
+
+                $(".personnel_totalpage_orginization").val(totalpage)
+                $(".personnel_currentPage_orginization").val(curpage)
+                $(".personnel_currentPage_countPage_orginization").html('').html(curpage+"/"+totalpage)
+
+
+                if (totalpage > 1) {
+                    $(".table_button_orginization_personnel").removeClass('displayNone').addClass('displayBlock')
+                } else {
+                    $(".table_button_orginization_personnel").removeClass('displayBlock').addClass('displayNone')
+                }
+
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+    // @methods 无组织用户列表
+    function noorguser(operation) {
+        var curpage = 1// 第几页
+        var psize = PSIZE // 每页多少条数据
+        if (operation === '首页') {
+            if (Number($(".unorganized_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = 1
+            }
+        } else if (operation === '上一页') {
+            if (Number($(".unorganized_currentPage_orginization").val()) === 1) {
+                return
+            } else {
+                curpage = Number($(".unorganized_currentPage_orginization").val()) - 1
+            }
+        } else if (operation === '下一页') {
+            if (Number($(".unorganized_currentPage_orginization").val()) < Number($(".unorganized_totalpage_orginization").val())) {
+                curpage = Number($(".unorganized_currentPage_orginization").val()) + 1
+            } else {
+                return
+            }
+        } else if(operation ==='尾页'){
+            if (Number($(".unorganized_currentPage_orginization").val()) === Number($(".unorganized_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".unorganized_totalpage_orginization").val())
+            }
+        } else if (operation ==='跳转') {
+            if (Number($(".unorganized_pages_orginization").val()) === Number($(".unorganized_currentPage_orginization").val()) || Number($(".unorganized_pages_orginization").val()) < 1 || Number($(".unorganized_pages_orginization").val()) > Number($(".unorganized_totalpage_orginization").val())) {
+                return
+            } else {
+                curpage = Number($(".unorganized_pages_orginization").val())
+            }
+        } else if (operation ==='当前') {
+            curpage = Number($(".unorganized_currentPage_orginization").val())
+        } else {
+            curpage = 1
+        }
+        var noorgusersJson = {},noorgusers='',unorganizedUserList_value = '',totalpage=''
+
+        $.ajax({
+            url: './index.php?g=Orginization&m=Orginization&a=noorguser',
+            type: 'post',
+            data: {curpage: curpage, psize: psize},
+            success: function (data) {
+                noorgusersJson = JSON.parse(data)
+                // 无组织用户列表
+                noorgusers = noorgusersJson.userlist
+                if (noorgusers.length > 0) {
+                    noorgusers.forEach(function (k) {
+                        unorganizedUserList_value += '<label class="value_label">' +
+                            '<input type="checkbox" name="unorganizedUserList_value_input" class="unorganizedUserList_value_input vauel_label_input" value="'+k.id+'">' +
+                            '<span class="unorganizedUserList_value_span value_label_span">'+k.user_login+'</span>'+
+                            '</label>'
+                    })
+                    $(".unorganizedUserList_value").html('')
+                    $(".unorganizedUserList_value").html(unorganizedUserList_value)
+                } else {
+                    $(".unorganizedUserList_value").html('')
+                }
+
+                // 总页数
+                totalpage = noorgusersJson.totalpage
+
+                $(".unorganized_currentPage_orginization").val(curpage)
+                $(".unorganized_totalpage_orginization").val(totalpage)
+                $(".unorganized_currentPage_countPage_orginization").html('').html(curpage+"/"+totalpage)
+
+                // 总页数
+                if (totalpage > 1) {
+                    $(".table_button_orginization_unorganized").removeClass('displayNone').addClass('displayBlock')
+                } else {
+                    $(".table_button_orginization_unorganized").removeClass('displayBlock').addClass('displayNone')
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+    // @methods 拖拽修改节点的用户列表
+    // @ois {String} 目标节点ID
+    // @uid {String} 拖拽的用户ID
+    function edituseroid(oid, uid) {
+        var dataJson = {}
+        $.ajax({
+            url: './index.php?g=Orginization&m=Orginization&a=edituseroid',
+            type: 'post',
+            data: {oid: oid,uid: uid},
+            success: function (data) {
+                dataJson = JSON.parse(data)
+                if (dataJson.state === true) {
+                    userlistByNode()
+                } else {
+                    for(var i = 0;i < $(".personnel_value_span").length; i++) {
+                        $($(".personnel_value_span")[i]).removeClass('domBtn_Disabled')
+                    }
+                }
+                alert(dataJson.msg)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+    // @methods 给name为personnel_value_input的input挂载一个click方法，当点击Input的时候，改变相邻的span的class
+    function inputClickSpan() {
+        $("input[name=personnel_value_input]").on('click', function () {
+            if($(this).prop('checked')) {
+                $(this).parent().find('span').addClass('domBtn_Disabled')
+            } else {
+                $(this).parent().find('span').removeClass('domBtn_Disabled')
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
